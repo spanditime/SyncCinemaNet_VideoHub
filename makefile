@@ -36,7 +36,7 @@ compile: $(OBJ)
 	@$(CXX) $(OBJ) -o bin/$(NAME) && echo compile : success
 
 rmo:
-	@rm -R obj && echo object remove : success
+	@rm -R $(OBJDIR) && echo object remove : success
 
 build_tests: $(patsubst %,test_%,$(TESTS))
 
