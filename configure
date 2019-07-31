@@ -18,12 +18,20 @@ then
     if [ "$2" == "" ]
     then
         echo Empty test name
+        exit 1
     elif [ -d ./tests/test_$2 ]
     then
         res=$(find ./tests/test_$2/src -name "*.cpp")
-        echo $res $(find ./tests/src -name "*.cpp")
+        if [ "$res" == "" ]
+        then
+            echo No source files found in ./tests/test_$2/src directory
+            exit 1
+        else
+            echo $res $(find ./tests/src -name "*.cpp")
+        fi
     else
         echo No such directory ./tests/test_$2 for test named $2
+        exit 1
     fi
 else
     echo Unknown variable $1
